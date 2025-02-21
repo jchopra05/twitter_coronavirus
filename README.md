@@ -26,7 +26,7 @@ The following graphs visualize the spread of the coronavirus discussion on Twitt
 ![Hashtag Usage by Country - #코로나바이러스](./src/#코로나바이러스_hashtags.country.png)
 
 ### Hashtag Usage Over Time 
-![Hashtag Over Time #coronavirus](./src/hashtag_trends.png)
+![Hashtag Over Time](./src/hashtag_trends.png)
 
 ## How to Run
 1. Clone the repository and navigate to the project directory.

@@ -2,15 +2,18 @@
 
 # command line args
 import argparse
-import os 
-import json 
-import matplotlib.pyplot as plt 
+import os
+import json
+import matplotlib.pyplot as plt
+from matplotlib import rc
 from collections import defaultdict
 
+rc('font', family='UnBatang')
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_path',required=True)
-parser.add_argument('--key',required=True)
-parser.add_argument('--percent',action='store_true')
+parser.add_argument('--input_path', required=True)
+parser.add_argument('--key', required=True)
+parser.add_argument('--percent', action='store_true')
 args = parser.parse_args()
 
 # open the input path
@@ -27,12 +30,12 @@ sorted_items = sorted(counts[args.key].items(), key=lambda item: item[1], revers
 
 labels, values = zip(*sorted_items) if sorted_items else ([], [])
 
-plt.figure(figsize=(10, 5))
-plt.barh(labels, values, color='skyblue')
-plt.xlabel("Frequency")
-plt.ylabel("Language / Country Code")
+plt.figure(figsize=(12, 6))
+plt.bar(labels, values, color='skyblue')
+plt.ylabel("Count")
+plt.xlabel("Language / Country Code")
+plt.xticks(rotation=45, ha="right")
 plt.title(f"Top 10 {args.key} Mentions in {os.path.basename(args.input_path)}")
-plt.gca().invert_yaxis()
 
 output_filename = f"{args.key}_{os.path.basename(args.input_path).replace('.txt', '')}.png"
 plt.savefig(output_filename, bbox_inches='tight')
