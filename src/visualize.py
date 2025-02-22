@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# command line args
 import argparse
 import os
 import json
@@ -16,18 +15,33 @@ parser.add_argument('--key', required=True)
 parser.add_argument('--percent', action='store_true')
 args = parser.parse_args()
 
-# open the input path
+# Load JSON file
 with open(args.input_path) as f:
     counts = json.load(f)
 
-# normalize the counts by the total values
+# Ensure the key exists in the data
+if args.key not in counts:
+    raise ValueError(f"Key '{args.key}' not found in the JSON data.")
+
+# Normalize counts if --percent is enabled
 if args.percent:
     for k in counts[args.key]:
-        counts[args.key][k] /= counts['_all'][k]
+        if k in counts['_all'] and counts['_all'][k] > 0:
+            counts[args.key][k] /= counts['_all'][k]
+        else:
+            counts[args.key][k] = 0  # Prevent division errors
 
-# print the counts
-sorted_items = sorted(counts[args.key].items(), key=lambda item: item[1], reverse=True)[:10]  # Top 10
+# Sort from LOW to HIGH
+sorted_items = sorted(counts[args.key].items(), key=lambda item: item[1])  # Sort ascending
 
+# Ensure at least 10 items are selected, if available
+num_to_select = min(10, len(sorted_items))
+if num_to_select < 10:
+    print(f"Warning: Only {num_to_select} entries available instead of 10.")
+
+sorted_items = sorted_items[:num_to_select]
+
+# Extract labels and values
 labels, values = zip(*sorted_items) if sorted_items else ([], [])
 
 plt.figure(figsize=(12, 6))
@@ -35,8 +49,9 @@ plt.bar(labels, values, color='skyblue')
 plt.ylabel("Count")
 plt.xlabel("Language / Country Code")
 plt.xticks(rotation=45, ha="right")
-plt.title(f"Top 10 {args.key} Mentions in {os.path.basename(args.input_path)}")
+plt.title(f"Bottom {num_to_select} {args.key} Mentions in {os.path.basename(args.input_path)}")
 
+# Generate output filename
 output_filename = f"{args.key}_{os.path.basename(args.input_path).replace('.txt', '')}.png"
 plt.savefig(output_filename, bbox_inches='tight')
 

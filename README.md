@@ -18,15 +18,15 @@ This project analyzes geotagged tweets from 2020 to track the spread of coronavi
 The following graphs visualize the spread of the coronavirus discussion on Twitter:
 
 ### Hashtag Usage by Language
-![Hashtag Usage by Language - #coronavirus](./src/#coronavirus_hashtags.lang.png)
-![Hashtag Usage by Language - #코로나바이러스](./src/#코로나바이러스_hashtags.lang.png)
+![Hashtag Usage by Language - #coronavirus](./src/#coronavirus_final_output.lang.png)
+![Hashtag Usage by Language - #코로나바이러스](./src/#코로나바이러스_final_output.lang.png)
 
 ### Hashtag Usage by Country
-![Hashtag Usage by Country - #coronavirus](./src/#coronavirus_hashtags.country.png)
-![Hashtag Usage by Country - #코로나바이러스](./src/#코로나바이러스_hashtags.country.png)
+![Hashtag Usage by Country - #coronavirus](./src/#coronavirus_final_output.country.png)
+![Hashtag Usage by Country - #코로나바이러스](./src/#코로나바이러스_final_output.country.png)
 
 ### Hashtag Usage Over Time 
-![Hashtag Over Time](./src/hashtag_trends.png)
+![Hashtag Over Time](./src/alternative_reduce.png)
 
 ## How to Run
 1. Clone the repository and navigate to the project directory.

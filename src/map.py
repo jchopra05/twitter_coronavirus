@@ -68,6 +68,8 @@ with zipfile.ZipFile(args.input_path) as archive:
                 # search hashtags
                 for hashtag in hashtags:
                     lang = tweet['lang']
+                    if lang == "und":
+                        continue 
                     if hashtag in text:
                         counter_lang[hashtag][lang] += 1
                         if country_code is not None:
