@@ -19,11 +19,11 @@ The following graphs visualize the spread of the coronavirus discussion on Twitt
 
 ### Hashtag Usage by Language
 ![Hashtag Usage by Language - #coronavirus](src/coronavirus_final_output.lang.png)
-![Hashtag Usage by Language - #코로나바이러스](src/kr_final_output.lang.png)
+![Hashtag Usage by Language - #코로나바이러스](src/coronavirus_kr_final_output.lang.png)
 
 ### Hashtag Usage by Country
 ![Hashtag Usage by Country - #coronavirus](src/coronavirus_final_output.country.png)
-![Hashtag Usage by Country - #코로나바이러스](src/kr_final_output.country.png)
+![Hashtag Usage by Country - #코로나바이러스](src/coronavirus_kr_final_output.country.png)
 
 ### Hashtag Usage Over Time 
 ![Hashtag Over Time](./src/alternative_reduce.png)
