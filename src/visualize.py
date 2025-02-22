@@ -31,8 +31,11 @@ if args.percent:
         else:
             counts[args.key][k] = 0  # Prevent division errors
 
-# Sort from LOW to HIGH
-sorted_items = sorted(counts[args.key].items(), key=lambda item: item[1])  # Sort ascending
+# Get top 10 
+sorted_items = sorted(counts[args.key].items(), key=lambda item: item[1], reverse=True)[:10]
+
+# sort the bars
+sorted_items = sorted(sorted_items, key=lambda item: item[1])
 
 # Ensure at least 10 items are selected, if available
 num_to_select = min(10, len(sorted_items))
@@ -49,7 +52,7 @@ plt.bar(labels, values, color='skyblue')
 plt.ylabel("Count")
 plt.xlabel("Language / Country Code")
 plt.xticks(rotation=45, ha="right")
-plt.title(f"Bottom {num_to_select} {args.key} Mentions in {os.path.basename(args.input_path)}")
+plt.title(f"Top 10 '{args.key}' Mentions")
 
 # Generate output filename
 output_filename = f"{args.key}_{os.path.basename(args.input_path).replace('.txt', '')}.png"
